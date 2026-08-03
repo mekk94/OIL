@@ -1,0 +1,354 @@
+// =============================================================================
+// GLOBAL STYLES — OIL Corporate Website
+// =============================================================================
+@use 'styles/tokens' as *;
+@use 'styles/typography' as *;
+@use 'styles/mixins' as *;
+
+// -----------------------------------------------------------------------------
+// RESET & BASE
+// -----------------------------------------------------------------------------
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+
+  @include motion-reduce {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--text-body-leading);
+  color: var(--ink);
+  background-color: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+// Arabic body overrides
+:lang(ar) body,
+body:lang(ar) {
+  font-family: var(--font-body-ar);
+}
+
+// Images
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+// Links
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+// Buttons
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+// Lists
+ul,
+ol {
+  list-style: none;
+}
+
+// -----------------------------------------------------------------------------
+// FOCUS VISIBLE — global keyboard focus
+// -----------------------------------------------------------------------------
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+// Remove focus ring for mouse users
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+// -----------------------------------------------------------------------------
+// SECTION BACKGROUNDS — alternation utility classes
+// -----------------------------------------------------------------------------
+.section--light {
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
+.section--warm {
+  background-color: var(--paper-warm);
+  color: var(--ink);
+}
+
+.section--dark {
+  background-color: var(--navy-deep);
+  color: var(--text-on-dark);
+}
+
+.section--mid-dark {
+  background-color: var(--navy-mid);
+  color: var(--text-on-dark);
+}
+
+// -----------------------------------------------------------------------------
+// CONTAINER
+// -----------------------------------------------------------------------------
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: $space-8;
+
+  @include mobile-only {
+    padding-inline: $space-4;
+  }
+
+  @include large-desktop {
+    max-width: 1440px;
+    padding-inline: $space-12;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// SECTION HEADER (label + heading + subhead)
+// -----------------------------------------------------------------------------
+.section-header {
+  text-align: center;
+  margin-bottom: $space-12;
+
+  @include mobile-only {
+    margin-bottom: $space-8;
+  }
+}
+
+.section-label {
+  @include text-label;
+  display: inline-block;
+  color: var(--accent);
+  margin-bottom: $space-3;
+
+  .section--dark &,
+  .section--mid-dark & {
+    color: var(--gold-light);
+  }
+}
+
+.section-heading {
+  @include text-h2;
+  color: var(--navy-deep);
+  margin-bottom: $space-4;
+
+  .section--dark &,
+  .section--mid-dark & {
+    color: var(--text-on-dark);
+  }
+}
+
+.section-subhead {
+  @include text-body-lg;
+  color: var(--ink-muted);
+  max-width: 600px;
+  margin-inline: auto;
+  // Use logical text-align so it reads correctly in both EN and AR
+  text-align: center;
+
+  .section--dark &,
+  .section--mid-dark & {
+    color: var(--text-on-dark-muted);
+  }
+}
+
+// -----------------------------------------------------------------------------
+// BUTTONS
+// -----------------------------------------------------------------------------
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  padding: $space-3 $space-6;
+  border-radius: $radius-full;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  border: 2px solid transparent;
+  @include transition-base(background-color, color, border-color, box-shadow, transform);
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  @include focus-ring;
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--white);
+
+  &:hover {
+    background: var(--steel);
+    box-shadow: $shadow-glow-accent;
+  }
+}
+
+.btn--outline {
+  background: transparent;
+  border-color: currentColor;
+  color: var(--accent);
+
+  &:hover {
+    background: var(--accent);
+    color: var(--white);
+    border-color: var(--accent);
+  }
+}
+
+.btn--gold {
+  background: var(--gold);
+  color: $navy-deep;
+
+  &:hover {
+    background: var(--gold-light);
+    box-shadow: $shadow-glow-gold;
+  }
+}
+
+.btn--ghost {
+  background: var(--glass-bg);
+  color: var(--white);
+  border-color: var(--glass-border);
+
+  &:hover {
+    background: var(--glass-bg-hover);
+    border-color: var(--glass-border-hover);
+  }
+}
+
+// -----------------------------------------------------------------------------
+// SCROLL REVEAL — base state (directive adds .revealed)
+// -----------------------------------------------------------------------------
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  @include transition-slow(opacity, transform);
+
+  &.revealed {
+    opacity: 1;
+    transform: none;
+  }
+
+  @include motion-reduce {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+.reveal--left {
+  opacity: 0;
+  transform: translateX(-24px);
+
+  &.revealed {
+    opacity: 1;
+    transform: none;
+  }
+
+  @include motion-reduce {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.reveal--right {
+  opacity: 0;
+  transform: translateX(24px);
+
+  &.revealed {
+    opacity: 1;
+    transform: none;
+  }
+
+  @include motion-reduce {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// Staggered children
+@for $i from 1 through 8 {
+  .reveal-child:nth-child(#{$i}) {
+    @include motion-safe {
+      transition-delay: #{($i - 1) * 80}ms;
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// LOADER OVERLAY
+// -----------------------------------------------------------------------------
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  background: $navy-deep;
+  z-index: $z-loader;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include transition-slow(opacity, visibility);
+
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// SELECTION
+// -----------------------------------------------------------------------------
+::selection {
+  background: rgba($accent, 0.25);
+  color: $navy-deep;
+}
+
+// -----------------------------------------------------------------------------
+// PLACEHOLDER IMAGE TREATMENT
+// -----------------------------------------------------------------------------
+.img-placeholder {
+  background: linear-gradient(135deg, $navy-mid 0%, $steel 50%, $navy-deep 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: var(--font-body);
+}
+
+bdi {
+  direction: ltr;
+  unicode-bidi: isolate;
+  margin-inline: 0.15em;
+}

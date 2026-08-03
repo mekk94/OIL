@@ -1,0 +1,297 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+// =============================================================================
+// HEADER — transparent on hero, solid navy after scroll
+// =============================================================================
+.header {
+  position: fixed;
+  top: 0;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
+  z-index: $z-header;
+  @include transition-base(background-color, box-shadow, backdrop-filter);
+
+  background: $navy-deep;
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.25);
+
+  // Still keep transition for other possible states, but bg is solid
+  &--scrolled {
+    box-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-2;
+  padding-block: $space-1;
+
+  @include desktop-up {
+    gap: $space-4;
+    padding-block: $space-1;
+  }
+}
+
+// --- Brand ---
+.header__brand {
+  display: flex;
+  align-items: center;
+  gap: $space-1;
+  text-decoration: none;
+  flex-shrink: 0;
+
+  @include focus-ring(true);
+}
+
+.header__logo {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+
+  @include desktop-up {
+    width: 88px;
+    height: 88px;
+  }
+}
+
+.header__brand .header__wordmark {
+  font-family: var(--font-heading-en);
+  font-size: 1.25rem;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  background: linear-gradient(135deg, var(--white) 0%, var(--gold-light) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  @include desktop-up {
+    font-size: 1.5rem;
+  }
+}
+
+// --- Desktop Nav ---
+.header__nav {
+  display: none;
+
+  @include desktop-up {
+    display: flex;
+  }
+}
+
+.header__nav-list {
+  display: flex;
+  align-items: center;
+  gap: $space-1;
+}
+
+.header__nav-link {
+  position: relative;
+  padding: $space-2 $space-3;
+  border-radius: $radius-full;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  @include transition-fast(color, background-color);
+
+  &:hover {
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  &--active {
+    color: var(--gold-light);
+    background: transparent;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: $space-3;
+      right: $space-3;
+      height: 2px;
+      background: var(--gold-light);
+      border-radius: 2px;
+    }
+
+    &:hover {
+      background: transparent;
+      color: var(--gold);
+    }
+  }
+
+  @include focus-ring(true);
+}
+
+// --- Actions ---
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+
+  @include desktop-up {
+    gap: $space-3;
+  }
+}
+
+.header__lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-2 $space-3;
+  border-radius: $radius-full;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--white);
+  cursor: pointer;
+  @include transition-fast(background-color, border-color);
+
+  &:hover {
+    background: var(--glass-bg-hover);
+    border-color: var(--glass-border-hover);
+  }
+
+  @include focus-ring(true);
+}
+
+.header__lang-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.header__lang-code {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.header__cta {
+  display: none;
+  font-size: 0.875rem;
+  padding: $space-2 $space-5;
+
+  @include desktop-up {
+    display: inline-flex;
+  }
+}
+
+// --- Hamburger ---
+.header__hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  padding: $space-2;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  @include focus-ring(true);
+
+  @include desktop-up {
+    display: none;
+  }
+}
+
+.header__hamburger-bar {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--white);
+  border-radius: $radius-full;
+  @include transition-base(transform, opacity, width);
+
+  .header--menu-open & {
+    &:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    &:nth-child(2) {
+      opacity: 0;
+      width: 0;
+    }
+    &:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+}
+
+// --- Mobile Menu ---
+.header__mobile-menu {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-2;
+  background: $navy-deep;
+  padding: $space-4 $space-6 $space-6;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  // Only show on mobile
+  @include mobile-only {
+    display: flex;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    @include transition-base(max-height, padding);
+
+    &--open {
+      max-height: 500px;
+      padding: $space-4 $space-6 $space-6;
+    }
+  }
+
+  @include tablet-only {
+    display: flex;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    @include transition-base(max-height, padding);
+
+    &--open {
+      max-height: 500px;
+      padding: $space-4 $space-6 $space-6;
+    }
+  }
+
+  ul {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+  }
+}
+
+.header__mobile-link {
+  display: block;
+  padding: $space-3 $space-4;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: $radius-md;
+  @include transition-fast(background-color, color);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--white);
+  }
+
+  &--active {
+    color: var(--gold-light);
+    background: rgba(var(--gold-rgb), 0.1);
+    
+    &:hover {
+      color: var(--gold);
+    }
+  }
+
+  @include focus-ring(true);
+}
+
+.header__mobile-cta {
+  margin-top: $space-4;
+  width: 100%;
+  max-width: 280px;
+}

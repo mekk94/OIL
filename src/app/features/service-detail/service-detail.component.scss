@@ -1,0 +1,176 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/typography' as *;
+@use '../../../styles/mixins' as *;
+
+.service-detail {
+  @include section-padding;
+  padding-top: calc(#{$space-20} + #{$header-height}); // cleared magic number
+  min-height: 60vh;
+}
+
+.service-detail__header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto $space-12;
+}
+
+.service-detail__back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  margin-bottom: $space-6;
+  font-size: 0.875rem;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.service-detail__heading {
+  @include text-h1;
+  color: $navy-deep;
+}
+
+.service-detail__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-6;
+
+  @include tablet-up {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include desktop-up {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.service-detail__card {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: $radius-xl;
+  overflow: hidden;
+  border: none;
+  padding: $space-5;
+  display: flex;
+  align-items: flex-end;
+  cursor: pointer;
+  box-shadow: $shadow-md;
+  @include transition-base(box-shadow, transform);
+
+  &:hover {
+    box-shadow: $shadow-xl;
+    transform: translateY(-2px);
+  }
+
+  @include focus-ring;
+}
+
+// Full real image cover
+.service-detail__card-image {
+  position: absolute;
+  inset: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+}
+
+.service-detail__card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba($navy-deep, 0) 40%, rgba($navy-deep, 0.85) 100%);
+}
+
+.service-detail__card-name {
+  position: relative;
+  z-index: 1;
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-size: var(--text-h4);
+  font-weight: 700;
+  text-align: start; // logical
+
+  [data-lang='ar'] & { text-align: end; } // logical
+}
+
+// --- Modal ---
+.service-detail__modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba($navy-deep, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-4;
+  z-index: $z-modal;
+}
+
+.service-detail__modal {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--white);
+  border-radius: $radius-xl;
+  box-shadow: $shadow-xl;
+  @include custom-scrollbar;
+}
+
+.service-detail__modal-close {
+  position: absolute;
+  top: $space-4;
+  inset-inline-end: $space-4; // logical
+  z-index: 1;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $radius-full;
+  background: rgba(255, 255, 255, 0.9);
+  color: $navy-deep;
+  box-shadow: $shadow-sm;
+  cursor: pointer;
+
+  svg { width: 18px; height: 18px; }
+
+  @include focus-ring;
+}
+
+.service-detail__modal-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+}
+
+.service-detail__modal-body {
+  padding: $space-8;
+
+  h3 {
+    font-family: var(--font-heading);
+    font-size: var(--text-h3);
+    color: $navy-deep;
+    margin-bottom: $space-4;
+  }
+
+  p {
+    font-size: var(--text-body);
+    line-height: var(--text-body-leading); // was 1.75 hardcoded
+    color: $ink-mid;
+  }
+}

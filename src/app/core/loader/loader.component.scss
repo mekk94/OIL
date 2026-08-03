@@ -1,0 +1,76 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  background: $navy-deep;
+  z-index: $z-loader;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include transition-slow(opacity, visibility);
+
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+.loader__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-3;
+}
+
+.loader__logo {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+
+  @include motion-safe {
+    animation: loader-pulse 1.2s ease-in-out infinite;
+  }
+}
+
+.loader__wordmark {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.15em;
+}
+
+.loader__bar {
+  width: 120px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: $radius-full;
+  overflow: hidden;
+}
+
+.loader__bar-fill {
+  height: 100%;
+  background: $accent;
+  border-radius: $radius-full;
+
+  @include motion-safe {
+    animation: loader-bar 0.7s ease-out forwards;
+  }
+
+  @include motion-reduce {
+    width: 100%;
+  }
+}
+
+@keyframes loader-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(0.95); }
+}
+
+@keyframes loader-bar {
+  from { width: 0; }
+  to { width: 100%; }
+}

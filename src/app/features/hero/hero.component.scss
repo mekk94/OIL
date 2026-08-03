@@ -1,0 +1,235 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/typography' as *;
+@use '../../../styles/mixins' as *;
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+// --- Slideshow ---
+.hero__slides {
+  position: absolute;
+  inset: 0;
+}
+
+.hero__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  @include transition-slow(opacity);
+
+  &--active {
+    opacity: 1;
+  }
+}
+
+// Real image fills the slide completely
+.hero__slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+      rgba($navy-deep, 0.35) 0%,
+      rgba($navy-deep, 0.6) 50%,
+      rgba($navy-deep, 0.82) 100%);
+}
+
+// --- Content ---
+.hero__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-start;
+  padding-inline-start: $space-8;
+
+  @include desktop-up {
+    padding-inline-start: $space-16;
+  }
+
+  :host-context([data-lang='ar']) & {
+    justify-content: flex-end;
+    padding-inline-start: 0;
+    padding-inline-end: $space-8;
+
+    @include desktop-up {
+      padding-inline-end: $space-16;
+    }
+  }
+}
+
+.hero__text {
+  text-align: start;
+  max-width: 680px;
+}
+
+:host-context([data-lang='ar']) .hero__text {
+  text-align: right;
+}
+
+:host ::ng-deep .text-gold {
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  filter: drop-shadow(0 2px 16px rgba(215, 166, 42, 0.4));
+}
+
+.hero__headline {
+  @include text-display;
+  color: var(--white);
+  margin-bottom: $space-5;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+}
+
+.hero__subhead {
+  @include text-body;
+  color: var(--white);
+  font-weight: 600;
+  margin-bottom: $space-4;
+  letter-spacing: 0.02em;
+
+  .hero__bullets {
+    display: block;
+    opacity: 0.9;
+  }
+}
+
+.hero__desc {
+  @include text-body;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: $space-8;
+  line-height: 1.6;
+}
+
+.hero__actions {
+  display: flex;
+  gap: $space-3;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  [data-lang='ar'] & {
+    justify-content: flex-end;
+  }
+}
+
+// --- Indicators ---
+.hero__indicators {
+  position: absolute;
+  bottom: $space-10;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: $space-2;
+  z-index: 3;
+}
+
+.hero__indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: $radius-full;
+  background: rgba(255, 255, 255, 0.4);
+  border: none;
+  cursor: pointer;
+  @include transition-base(width, background-color);
+
+  &--active {
+    width: 28px;
+    background: var(--gold-light);
+  }
+
+  @include focus-ring(true);
+}
+
+// --- Scroll Cue ---
+.hero__scroll-cue {
+  position: absolute;
+  bottom: $space-8;
+  inset-inline-end: $space-8; // was: right — now logical
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-2;
+  z-index: 3;
+  color: rgba(255, 255, 255, 0.6);
+
+  @include motion-safe {
+    animation: bounce 2s infinite;
+  }
+
+  @include mobile-only {
+    bottom: $space-4;
+    inset-inline-end: $space-4;
+  }
+}
+
+.mouse-icon {
+  width: 24px;
+  height: 36px;
+  border: 2px solid currentColor;
+  border-radius: 12px;
+  position: relative;
+}
+
+.mouse-wheel {
+  width: 4px;
+  height: 8px;
+  background: currentColor;
+  border-radius: 2px;
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  @include motion-safe {
+    animation: scroll-wheel 2s ease-in-out infinite;
+  }
+}
+
+.chevron-icon {
+  width: 24px;
+  height: 24px;
+}
+
+@keyframes bounce {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-10px);
+  }
+
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes scroll-wheel {
+  0% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(-50%) translateY(12px);
+    opacity: 0;
+  }
+}

@@ -1,0 +1,350 @@
+{
+  "nav": {
+    "home": "Home",
+    "overview": "Overview",
+    "services": "Services",
+    "industries": "Industries",
+    "hse": "HSE",
+    "why": "Why OIL",
+    "contact": "Contact"
+  },
+  "header": {
+    "cta": "Talk to Our Team",
+    "langToggle": "عربي"
+  },
+  "hero": {
+    "eyebrow": "",
+    "headline": "OPERATIONS<br><span class=\"text-gold\">INTEGRATED</span><br>LIMITED (OIL)",
+    "subhead": "<span class=\"hero__bullets\">Engineering Excellence &bull; <span class=\"text-gold\">Integrated</span> Solutions &bull; Trusted Performance</span>",
+    "description": "A Saudi-based contracting company delivering integrated engineering solutions in Civil, Electrical and Mechanical disciplines across the Kingdom of Saudi Arabia.",
+    "cta1": "Explore Our Services",
+    "cta2": "Start a Project"
+  },
+  "overview": {
+    "sectionLabel": "Who We Are",
+    "heading": "Built on Integrity - Driven by Innovation",
+    "intro": "Operations Integrated Limited (OIL) is a Saudi-based EPC contractor delivering integrated Civil, Electrical and Mechanical engineering solutions. We plan, build and commission complex infrastructure and industrial facilities across the Kingdom, holding every project to the same standard of safety, quality and accountability.",
+    "vision": {
+      "title": "Our Vision",
+      "body": "To be Saudi Arabia's most trusted EPC contractor — known for technical excellence, safety leadership and lasting value for the clients and communities we serve."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "body": "We deliver engineering, procurement and construction on time, within budget and to the highest standards of quality and safety — investing in our people and supporting the goals of Saudi Vision 2030 along the way."
+    },
+    "values": {
+      "title": "Core Values",
+      "items": [
+        "Integrity",
+        "Quality",
+        "Safety",
+        "Innovation",
+        "Professionalism",
+        "Teamwork",
+        "Customer Commitment",
+        "Sustainability"
+      ]
+    }
+  },
+  "stats": {
+    "years": "Years in Operation",
+    "projects": "Projects Delivered",
+    "engineers": "Engineers & Specialists",
+    "satisfaction": "Client Satisfaction"
+  },
+  "services": {
+    "sectionLabel": "What We Do",
+    "heading": "Integrated EPC Services",
+    "subhead": "One point of accountability across engineering, procurement and construction.",
+    "viewMore": "View More",
+    "backBtn": "Back to Services",
+    "civil": {
+      "name": "Civil",
+      "pageTitle": "Civil Services",
+      "description": "Civil engineering and construction for infrastructure and industrial projects, from first excavation to final handover.",
+      "items": [
+        {
+          "name": "Structural Design & Construction",
+          "description": "Reinforced concrete and structural steel design, engineered and built to withstand the Kingdom's climate and loading conditions."
+        },
+        {
+          "name": "Roads & Infrastructure",
+          "description": "Roadworks, drainage and site infrastructure built to Saudi highway and municipal standards."
+        },
+        {
+          "name": "Marine & Coastal Works",
+          "description": "Jetties, breakwaters and coastal protection works engineered for the Gulf and Red Sea environments."
+        },
+        {
+          "name": "Industrial Facilities",
+          "description": "Warehouses, plants and industrial shells delivered to production-ready specification."
+        },
+        {
+          "name": "Concrete Works & Foundations",
+          "description": "Deep and shallow foundation systems, slabs and concrete works for heavy industrial loads."
+        },
+        {
+          "name": "Site Development & Grading",
+          "description": "Earthworks, grading and site preparation that gets a plot ready to build on."
+        }
+      ]
+    },
+    "electrical": {
+      "name": "Electrical",
+      "pageTitle": "Electrical Services",
+      "description": "Electrical engineering and installation for power, control and instrumentation systems, built to Saudi grid and safety codes.",
+      "items": [
+        {
+          "name": "HV/MV/LV Power Systems",
+          "description": "High, medium and low voltage power distribution engineered to Saudi Electricity Company codes."
+        },
+        {
+          "name": "Substation Design & Construction",
+          "description": "Turnkey substation design, equipment installation and commissioning."
+        },
+        {
+          "name": "Instrumentation & Control",
+          "description": "Process instrumentation and control systems for safe, automated plant operation."
+        },
+        {
+          "name": "Fire Detection & Suppression",
+          "description": "Fire alarm, detection and suppression systems designed to Saudi Civil Defense code."
+        },
+        {
+          "name": "Lighting & Earthing Systems",
+          "description": "Site and facility lighting design paired with earthing and lightning protection."
+        },
+        {
+          "name": "Cable Management & Trays",
+          "description": "Cable routing, tray systems and containment engineered for long-term reliability."
+        }
+      ]
+    },
+    "mechanical": {
+      "name": "Mechanical",
+      "pageTitle": "Mechanical Services",
+      "description": "Mechanical engineering and installation for industrial systems and equipment, commissioned to run reliably from day one.",
+      "items": [
+        {
+          "name": "Piping & Pipeline Systems",
+          "description": "Process and utility piping fabricated and installed to ASME and API standards."
+        },
+        {
+          "name": "HVAC & Ventilation",
+          "description": "Heating, ventilation and air conditioning systems sized for industrial and commercial facilities."
+        },
+        {
+          "name": "Equipment Erection & Commissioning",
+          "description": "Mechanical equipment installation, alignment and commissioning through to handover."
+        },
+        {
+          "name": "Pressure Vessels & Tanks",
+          "description": "Fabrication and installation of pressure vessels and storage tanks to code."
+        },
+        {
+          "name": "Insulation & Painting",
+          "description": "Thermal insulation and protective coating systems for piping, vessels and structures."
+        },
+        {
+          "name": "Rotating Equipment",
+          "description": "Pumps, compressors and rotating machinery installed, aligned and commissioned."
+        }
+      ]
+    }
+  },
+  "industries": {
+    "sectionLabel": "Our Reach",
+    "heading": "Industries We Serve",
+    "subhead": "EPC expertise applied across the Kingdom's most demanding sectors.",
+    "items": [
+      {
+        "name": "Oil & Gas",
+        "description": "Upstream, midstream and downstream facilities, pipelines and processing plants."
+      },
+      {
+        "name": "Petrochemical",
+        "description": "Petrochemical plants, refinery units and chemical processing facilities."
+      },
+      {
+        "name": "Power Generation",
+        "description": "Power plants, substations, transmission lines and renewable energy projects."
+      },
+      {
+        "name": "Water & Utilities",
+        "description": "Water treatment plants, desalination facilities and utility distribution networks."
+      },
+      {
+        "name": "Industrial Facilities",
+        "description": "Factories, warehouses, manufacturing plants and industrial zone development."
+      },
+      {
+        "name": "Commercial & Real Estate",
+        "description": "Commercial complexes, mixed-use developments and large-scale residential projects."
+      },
+      {
+        "name": "Marine & Coastal",
+        "description": "Port facilities, jetties, coastal protection and offshore support structures."
+      },
+      {
+        "name": "Government & Public",
+        "description": "Public infrastructure, government buildings, roads and community facilities."
+      }
+    ]
+  },
+  "hse": {
+    "sectionLabel": "Safety First",
+    "heading": "Health, Safety & Environment",
+    "subhead": "At OIL, HSE is not a compliance box to tick — it is how we run every site.",
+    "items": [
+      {
+        "title": "Zero Harm Culture",
+        "body": "We approach every task with a zero-incident mindset, because we believe every injury is preventable.",
+        "icon": "shield"
+      },
+      {
+        "title": "Risk Assessment",
+        "body": "Every work activity is preceded by rigorous hazard identification and risk assessment.",
+        "icon": "search"
+      },
+      {
+        "title": "Toolbox Talks",
+        "body": "Daily pre-task briefings keep every crew aligned on hazards, controls and safe work methods.",
+        "icon": "users"
+      },
+      {
+        "title": "PPE Compliance",
+        "body": "PPE standards are enforced site-wide, backed by regular audits and immediate corrective action.",
+        "icon": "hard-hat"
+      },
+      {
+        "title": "Environmental Protection",
+        "body": "We assess and minimize environmental impact on every project, in line with Saudi regulations.",
+        "icon": "leaf"
+      },
+      {
+        "title": "Continuous Safety Training",
+        "body": "All personnel complete regular safety training, certification renewals and competency assessments.",
+        "icon": "book-open"
+      },
+      {
+        "title": "Compliance with Saudi Regulations",
+        "body": "Every project is fully aligned with Saudi Aramco, SABIC and government HSE standards.",
+        "icon": "file-check"
+      },
+      {
+        "title": "Emergency Preparedness & Response",
+        "body": "Every site maintains emergency response plans, regular drills and trained first-responders.",
+        "icon": "alert-triangle"
+      }
+    ]
+  },
+  "why": {
+    "sectionLabel": "Why OIL",
+    "heading": "Why Clients Choose OIL",
+    "subhead": "The advantages that make OIL the right EPC partner for your next project.",
+    "center": "WHY",
+    "centerTitle": "CHOOSE OIL",
+    "items": [
+      {
+        "icon": "award",
+        "title": "Proven Track Record",
+        "description": "Hundreds of projects delivered successfully across Saudi Arabia and the GCC."
+      },
+      {
+        "icon": "users",
+        "title": "Expert Team",
+        "description": "Multidisciplinary engineers, project managers and tradespeople with decades of combined experience."
+      },
+      {
+        "icon": "clock",
+        "title": "On-Time Delivery",
+        "description": "Rigorous scheduling and progress monitoring keep every milestone on track."
+      },
+      {
+        "icon": "dollar-sign",
+        "title": "Cost Efficiency",
+        "description": "Value engineering and procurement optimization that protect your budget."
+      },
+      {
+        "icon": "shield",
+        "title": "Safety Leadership",
+        "description": "Industry-leading HSE performance built on an unwavering commitment to zero harm."
+      },
+      {
+        "icon": "settings",
+        "title": "Full EPC Capability",
+        "description": "Engineering, procurement and construction under one roof, with one point of accountability."
+      },
+      {
+        "icon": "globe",
+        "title": "Vision 2030 Aligned",
+        "description": "Contributing to Saudi Arabia's economic diversification and national development goals."
+      },
+      {
+        "icon": "thumbs-up",
+        "title": "Client First",
+        "description": "Transparent communication and a genuine partnership approach on every project."
+      }
+    ]
+  },
+  "contact": {
+    "sectionLabel": "Get In Touch",
+    "heading": "Start a Conversation",
+    "subhead": "Tell us about your project and a member of our team will be in touch within 24 hours.",
+    "form": {
+      "name": "Full Name",
+      "namePlaceholder": "Your full name",
+      "email": "Email Address",
+      "emailPlaceholder": "your@email.com",
+      "phone": "Phone Number",
+      "phonePlaceholder": "+966 XXX XXX XXX",
+      "service": "Service Required",
+      "servicePlaceholder": "Select a service",
+      "serviceOptions": [
+        "Civil Works",
+        "Electrical Works",
+        "Mechanical Works",
+        "EPC (Full Scope)",
+        "Consultation"
+      ],
+      "message": "Message",
+      "messagePlaceholder": "Tell us about your project...",
+      "submit": "Send Message",
+      "submitting": "Sending...",
+      "successTitle": "Message Sent",
+      "successBody": "Thank you for reaching out. Our team will respond within 24 hours.",
+      "sendAnother": "Send Another Message",
+      "errorTitle": "Submission Failed",
+      "errorBody": "Something went wrong. Please try again or contact us directly by email."
+    },
+    "info": {
+      "emailLabel": "Email",
+      "phoneLabel": "Phone",
+      "locationLabel": "Location",
+      "whatsappCta": "Chat on WhatsApp"
+    },
+    "validation": {
+      "nameRequired": "Full name is required.",
+      "nameMax": "Name must be under 100 characters.",
+      "emailRequired": "Email address is required.",
+      "emailInvalid": "Please enter a valid email address.",
+      "phoneInvalid": "Please enter a valid phone number.",
+      "serviceRequired": "Please select a service.",
+      "messageRequired": "Message is required.",
+      "messageMin": "Message must be at least 10 characters.",
+      "messageMax": "Message must be under 2000 characters."
+    }
+  },
+  "footer": {
+    "quickLinks": "Quick Links",
+    "servicesTitle": "Services",
+    "contactUs": "Contact Us",
+    "tagline": "Operations Integrated Limited",
+    "description": "Delivering integrated engineering solutions with excellence, quality, and reliability across Saudi Arabia.",
+    "copyright": "© 2026 Operations Integrated Limited. All rights reserved.",
+    "phoneAriaLabel": "Call OIL",
+    "mapAriaLabel": "OIL location on Google Maps",
+    "whatsappAriaLabel": "Chat with OIL on WhatsApp",
+    "backToTopAriaLabel": "Back to top"
+  }
+}

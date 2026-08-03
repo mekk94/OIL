@@ -1,0 +1,313 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+.industries {
+  @include section-padding;
+  overflow: hidden;
+}
+
+// --- 3-Column Layout ---
+.industries__layout {
+  display: flex;               // mobile: only the carousel renders here now
+  justify-content: center;
+  gap: $space-6;
+
+  @include tablet-up {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    align-items: center;
+    gap: $space-6;
+    min-height: 500px;
+  }
+
+  @include desktop-up {
+    grid-template-columns: 240px 1fr 240px;
+    gap: $space-8;
+  }
+}
+
+// --- Filters ---
+.industries__filters {
+  display: none;                // mobile: replaced by .industries__mobile-filters
+  flex-direction: column;
+  gap: $space-3;
+  align-self: center;
+
+  @include tablet-up {
+    display: flex;
+  }
+}
+
+.industries__filter {
+  display: block;
+  width: 100%;
+  padding: $space-3 $space-4;
+  background: var(--glass-bg); // was rgba
+  border: 1px solid var(--glass-border);
+  border-radius: $radius-md;
+  color: var(--text-on-dark-muted);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: start; // logical
+  @include transition-base(background-color, border-color, color);
+
+  .industries__filters--right & {
+    text-align: end; // logical
+  }
+
+  &:hover {
+    background: var(--glass-bg-hover);
+    border-color: var(--glass-border-hover);
+    color: var(--white);
+  }
+
+  &--active {
+    background: rgba($accent, 0.15);
+    border-color: $accent;
+    color: $accent;
+    font-weight: 600;
+  }
+
+  @include focus-ring(true);
+}
+
+// --- Mobile Filters (shown instead of side filters) ---
+.industries__mobile-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $space-2;
+  margin-top: $space-8;
+
+  @include tablet-up {
+    display: none;
+  }
+
+  .industries__filter {
+    width: auto;
+    text-align: center;
+    padding: $space-2 $space-4;
+    font-size: 0.8125rem;
+  }
+}
+
+// --- Carousel Wrap ---
+.industries__carousel-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-4;
+  width: 100%;   // ensures it fills the row so the arrows sit at the true edges on mobile
+}
+
+.industries__carousel {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include mobile-only {
+    height: 380px;
+  }
+}
+
+// --- Cards ---
+.industries__card {
+  position: absolute;
+  width: 320px;
+  max-width: 90vw;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: $radius-xl;
+  overflow: hidden;
+  @include transition-slow(transform, opacity, filter);
+  cursor: default;
+
+  @include mobile-only {
+    width: 280px;
+  }
+
+  // Invisible far cards
+  &--far {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.7);
+  }
+
+  // Previous card (inline-start)
+  &--prev {
+    transform: translateX(-75%) scale(0.85);
+    opacity: 0.4;
+    filter: brightness(0.7);
+    pointer-events: none;
+    
+    [data-lang='ar'] & {
+      transform: translateX(75%) scale(0.85); // Reverse for RTL
+    }
+  }
+
+  // Next card (inline-end)
+  &--next {
+    transform: translateX(75%) scale(0.85);
+    opacity: 0.4;
+    filter: brightness(0.7);
+    pointer-events: none;
+
+    [data-lang='ar'] & {
+      transform: translateX(-75%) scale(0.85); // Reverse for RTL
+    }
+  }
+
+  // Active card (center)
+  &--active {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    filter: brightness(1);
+    border-color: rgba($accent, 0.4);
+    box-shadow: 0 0 40px rgba($accent, 0.15), $shadow-xl;
+    z-index: 2;
+
+    [data-lang='ar'] & {
+      transform: translateX(0) scale(1);
+    }
+  }
+}
+
+.industries__card-img {
+  width: 100%;
+  height: 200px;
+  display: block; // removed flex centering properties as it's an image container now
+  position: relative; // needed for absolute positioning of the number
+
+  // Real image filling the top half of the card
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+}
+
+.industries__card-num {
+  font-family: var(--font-heading);
+  font-size: 4rem; // purely decorative, ok to keep hardcoded
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.5); // was 0.15; increased so it's visible over photos
+  line-height: 1;
+  position: absolute;
+  bottom: $space-2;
+  inset-inline-end: $space-3;
+  z-index: 1;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5); // make it legible over varying backgrounds
+}
+
+.industries__card-content {
+  padding: $space-5 $space-6;
+}
+
+.industries__card-name {
+  font-family: var(--font-heading);
+  font-size: var(--text-h4);
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: $space-2;
+}
+
+.industries__card-desc {
+  font-size: var(--text-caption);
+  color: var(--text-on-dark-muted);
+  line-height: 1.6;
+}
+
+// --- Arrows ---
+.industries__arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: $radius-full;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  @include transition-base(background-color, border-color, transform);
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover {
+    background: $accent;
+    border-color: $accent;
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  &--prev {
+    inset-inline-start: -$space-6; // logical
+
+    @include mobile-only {
+      inset-inline-start: $space-2;
+    }
+
+    [data-lang='ar'] & {
+      transform: translateY(-50%) scaleX(-1); // flip arrow direction in RTL
+      
+      &:hover {
+        transform: translateY(-50%) scaleX(-1) scale(1.1);
+      }
+    }
+  }
+
+  &--next {
+    inset-inline-end: -$space-6; // logical
+
+    @include mobile-only {
+      inset-inline-end: $space-2;
+    }
+
+    [data-lang='ar'] & {
+      transform: translateY(-50%) scaleX(-1); // flip arrow direction in RTL
+      
+      &:hover {
+        transform: translateY(-50%) scaleX(-1) scale(1.1);
+      }
+    }
+  }
+
+  @include focus-ring(true);
+}
+
+// --- Dots ---
+.industries__dots {
+  display: flex;
+  gap: $space-2;
+}
+
+.industries__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: $radius-full;
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  cursor: pointer;
+  @include transition-base(width, background-color);
+
+  &--active {
+    width: 24px;
+    background: $accent;
+  }
+
+  @include focus-ring(true);
+}

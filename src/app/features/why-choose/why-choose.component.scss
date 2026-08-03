@@ -1,0 +1,144 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+.why {
+  @include section-padding;
+}
+
+// -----------------------------------------------------------------------------
+// Horizontal card strip
+// Cards stay perfectly square at every breakpoint (aspect-ratio 1/1) and only
+// shrink in absolute size on mobile via --card-size. On phones the row
+// scrolls horizontally with snap; from tablet up it fits/wraps in place.
+// -----------------------------------------------------------------------------
+.why__row {
+  --card-size: clamp(84px, 24vw, 128px);
+  --card-gap: #{$space-3};
+
+  display: flex;
+  gap: var(--card-gap);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: $space-4;
+  padding-block: $space-2 $space-3;
+  margin-inline: calc(-1 * $space-4);
+  padding-inline: $space-4;
+  @include custom-scrollbar;
+
+  @include small-mobile {
+    --card-size: 78px;
+    --card-gap: #{$space-2};
+  }
+
+  @include tablet-up {
+    --card-size: 136px;
+    --card-gap: #{$space-4};
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: visible;
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+
+  @include desktop-up {
+    --card-size: 156px;
+    --card-gap: #{$space-5};
+    flex-wrap: nowrap;
+  }
+}
+
+// --- Card ---
+// A chamfered "steel plate" silhouette (two cut corners) with a frosted-glass
+// surface and a gold corner tab — distinct from the fully-rounded cards used
+// in Services / HSE / Overview elsewhere on the site.
+.why__card {
+  --chamfer: 16px;
+
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  width: var(--card-size);
+  aspect-ratio: 1 / 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  padding: $space-2;
+  text-align: center;
+  cursor: default;
+
+  clip-path: polygon(
+    var(--chamfer) 0,
+    100% 0,
+    100% calc(100% - var(--chamfer)),
+    calc(100% - var(--chamfer)) 100%,
+    0 100%,
+    0 var(--chamfer)
+  );
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.03) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  @include transition-base(border-color, background, transform);
+
+  // Gold corner tab marking the chamfer
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: var(--chamfer);
+    height: var(--chamfer);
+    background: linear-gradient(135deg, $gold-light, $gold);
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+  }
+
+  &:hover,
+  &:focus-visible {
+    border-color: rgba($gold, 0.55);
+    background: linear-gradient(155deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+
+    @include motion-safe {
+      transform: translateY(-4px);
+    }
+
+    .why__card-icon {
+      color: $gold-light;
+    }
+  }
+
+  @include small-mobile {
+    --chamfer: 10px;
+    gap: $space-1;
+  }
+}
+
+.why__card-icon {
+  width: 34%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $accent-light;
+  flex-shrink: 0;
+  @include transition-base(color);
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.why__card-name {
+  font-family: var(--font-heading);
+  font-size: clamp(0.625rem, 2.4vw, 0.8125rem);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #fff;
+
+  @include desktop-up {
+    font-size: 0.875rem;
+  }
+}

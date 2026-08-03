@@ -1,0 +1,185 @@
+@use 'tokens' as *;
+
+// =============================================================================
+// MIXINS — OIL Corporate Website
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// RESPONSIVE BREAKPOINTS
+// -----------------------------------------------------------------------------
+@mixin mobile-only {
+  @media (max-width: #{$bp-md - 1px}) { @content; }
+}
+
+@mixin tablet-up {
+  @media (min-width: #{$bp-md}) { @content; }
+}
+
+@mixin tablet-only {
+  @media (min-width: #{$bp-md}) and (max-width: #{$bp-lg - 1px}) { @content; }
+}
+
+@mixin desktop-up {
+  @media (min-width: #{$bp-lg}) { @content; }
+}
+
+@mixin large-desktop {
+  @media (min-width: #{$bp-2xl}) { @content; }
+}
+
+// -----------------------------------------------------------------------------
+// REDUCED MOTION
+// -----------------------------------------------------------------------------
+@mixin motion-safe {
+  @media (prefers-reduced-motion: no-preference) { @content; }
+}
+
+@mixin motion-reduce {
+  @media (prefers-reduced-motion: reduce) { @content; }
+}
+
+// -----------------------------------------------------------------------------
+// TRANSITIONS
+// -----------------------------------------------------------------------------
+@mixin transition-base($props...) {
+  @include motion-safe {
+    transition-property: $props;
+    transition-duration: $duration-base;
+    transition-timing-function: $ease-in-out;
+  }
+}
+
+@mixin transition-fast($props...) {
+  @include motion-safe {
+    transition-property: $props;
+    transition-duration: $duration-fast;
+    transition-timing-function: $ease-out;
+  }
+}
+
+@mixin transition-slow($props...) {
+  @include motion-safe {
+    transition-property: $props;
+    transition-duration: $duration-slow;
+    transition-timing-function: $ease-in-out;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// SECTION LAYOUT
+// -----------------------------------------------------------------------------
+@mixin section-padding {
+  padding-block: $space-20;
+
+  @include mobile-only {
+    padding-block: $space-12;
+  }
+}
+
+@mixin section-container {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: $space-8;
+
+  @include mobile-only {
+    padding-inline: $space-4;
+  }
+}
+
+// Section heading block (label + heading + subhead)
+@mixin section-header-center {
+  text-align: center;
+  margin-bottom: $space-12;
+
+  @include mobile-only {
+    margin-bottom: $space-8;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// FOCUS STATES (accessibility)
+// -----------------------------------------------------------------------------
+@mixin focus-ring($on-dark: false) {
+  &:focus-visible {
+    outline: none;
+    @if $on-dark {
+      box-shadow: var(--focus-ring-dark);
+    } @else {
+      box-shadow: var(--focus-ring);
+    }
+    border-radius: $radius-sm;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// GLASS / CARD EFFECTS
+// -----------------------------------------------------------------------------
+@mixin glass-card($alpha: 0.08) {
+  background: rgba(255, 255, 255, #{$alpha});
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+@mixin card-light {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+}
+
+// -----------------------------------------------------------------------------
+// GRADIENT UTILITIES
+// -----------------------------------------------------------------------------
+@mixin gradient-navy {
+  background: linear-gradient(135deg, $navy-deep 0%, $navy-mid 60%, $steel 100%);
+}
+
+@mixin gradient-accent-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba($navy-deep, 0.4) 0%,
+    rgba($navy-deep, 0.7) 50%,
+    rgba($navy-deep, 0.9) 100%
+  );
+}
+
+// -----------------------------------------------------------------------------
+// SCROLLBAR STYLING
+// -----------------------------------------------------------------------------
+@mixin custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: $accent transparent;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $accent;
+    border-radius: $radius-full;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// VISUALLY HIDDEN (screen-reader only)
+// -----------------------------------------------------------------------------
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@mixin small-mobile {
+  @media (max-width: #{$bp-sm - 1px}) { @content; } // under 480px
+}
