@@ -1,43 +1,21 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  inject,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { I18nService } from '../../core/services/i18n.service';
 import { RevealDirective } from '../../core/directives/reveal.directive';
 
-type CardKey = 'vision' | 'mission' | 'values';
+type VmKey = 'vision' | 'mission';
 
-interface AccordionCard {
-  key: CardKey;
+interface VmCard {
+  key: VmKey;
   titleKey: string;
   bodyKey: string;
   image: string;
-  isValues?: boolean;
 }
 
-const CARDS: AccordionCard[] = [
+const VM_CARDS: VmCard[] = [
   { key: 'vision', titleKey: 'overview.vision.title', bodyKey: 'overview.vision.body', image: '/images/overview/vision.png' },
   { key: 'mission', titleKey: 'overview.mission.title', bodyKey: 'overview.mission.body', image: '/images/overview/mission.jpeg' },
-  { key: 'values', titleKey: 'overview.values.title', bodyKey: '', image: '/images/overview/values.png', isValues: true },
 ];
 
-/**
- * One gold icon (SVG path) per core value item, in the same order as
- * overview.values.items in en.json / ar.json. Swap paths freely later.
- */
-const VALUE_ICONS: string[] = [
-  'M12 2 3 6v6c0 5.25 3.6 9.74 9 11 5.4-1.26 9-5.75 9-11V6l-9-4Z', // Integrity – shield
-  'M6 3h12l3 5-9 13L3 8l3-5Zm0 5h12M9 3l3 5 3-5M12 8l-3 10M12 8l3 10', // Quality – gem
-  'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Zm-3-9 2 2 4-4', // Safety – shield check
-  'M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.3v.2h6v-.2c0-.9.4-1.7 1-2.3A6 6 0 0 0 12 3Z', // Innovation – bulb
-  'M4 7h16v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7Zm4 0V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M4 12h16', // Professionalism – briefcase
-  'M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2M13 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0Zm8 14v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75', // Teamwork – people
-  'M12 21s-7-4.35-9.5-9C1 8.5 2.5 5 6 5c2 0 3.5 1.5 4 2.5.5-1 2-2.5 4-2.5 3.5 0 5 3.5 3.5 7C19 16.65 12 21 12 21Z', // Customer Commitment – heart
-  'M12 22c-4-1-8-5-8-10a8 8 0 0 1 16 0c0 5-4 9-8 10Zm0-6c3-1 5-3.5 5-7', // Sustainability – leaf
-];
 
 @Component({
   selector: 'app-overview',
@@ -53,68 +31,110 @@ const VALUE_ICONS: string[] = [
           <p class="section-subhead overview__intro" [dir]="i18n.isArabic() ? 'rtl' : 'ltr'" [innerHTML]="i18n.t('overview.intro')"></p>
         </div>
 
-        <div class="overview__cards" role="list" oilReveal>
-          @for (card of cards; track card.key) {
-            <div
-              class="overview__card"
-              [class.overview__card--open]="isCardOpen(card.key)"
-              role="listitem"
-            >
-              <button
-                class="overview__card-trigger"
-                type="button"
-                (click)="toggleCard(card.key)"
-                [attr.aria-expanded]="isCardOpen(card.key)"
-                [attr.aria-controls]="'card-body-' + card.key"
-                [id]="'card-btn-' + card.key"
-              >
-                <span class="overview__card-header">
-                  <span class="overview__card-title" [dir]="i18n.isArabic() ? 'rtl' : 'ltr'">
-                    {{ i18n.t(card.titleKey) }}
-                  </span>
-                  <span class="overview__card-toggle" aria-hidden="true">
-                    <span class="overview__card-toggle-label">{{ isCardOpen(card.key) ? 'Less' : 'More' }}</span>
-                    <span class="overview__card-chevron">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="m6 9 6 6 6-6"/>
+        <!-- Vision & Mission -->
+        <div class="overview__vm-grid" oilReveal>
+          @for (card of vmCards; track card.key) {
+            <article class="overview__vm-card reveal-child" [dir]="i18n.isArabic() ? 'rtl' : 'ltr'">
+              <img class="overview__vm-bg" [src]="card.image" [alt]="i18n.t(card.titleKey)" loading="lazy" />
+              <div class="overview__vm-overlay" aria-hidden="true"></div>
+              <div class="overview__vm-content">
+                <div class="overview__vm-heading-row">
+                  <span class="overview__vm-icon" aria-hidden="true">
+                    @if (card.key === 'vision') {
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+                        <circle cx="12" cy="12" r="3" />
                       </svg>
-                    </span>
+                    } @else {
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <circle cx="12" cy="12" r="6" />
+                        <circle cx="12" cy="12" r="2" />
+                      </svg>
+                    }
                   </span>
-                </span>
-              </button>
-
-              <div
-                class="overview__card-body"
-                [id]="'card-body-' + card.key"
-                [attr.aria-labelledby]="'card-btn-' + card.key"
-                role="region"
-              >
-                <div class="overview__card-body-inner">
-                  @if (!card.isValues) {
-                    <p [dir]="i18n.isArabic() ? 'rtl' : 'ltr'" [innerHTML]="i18n.t(card.bodyKey)"></p>
-                  } @else {
-                    <ul class="overview__values-list" [dir]="i18n.isArabic() ? 'rtl' : 'ltr'" role="list">
-                      @for (val of valueItems(); track val; let vi = $index) {
-                        <li class="overview__value-item">
-                          <svg class="overview__value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path [attr.d]="valueIcons[vi]" />
-                          </svg>
-                          <span>{{ val }}</span>
-                        </li>
-                      }
-                    </ul>
-                  }
+                  <h3 class="overview__vm-title">{{ i18n.t(card.titleKey) }}</h3>
                 </div>
+                <p class="overview__vm-body" [innerHTML]="i18n.t(card.bodyKey)"></p>
               </div>
-
-              <div class="overview__card-media-wrap">
-                <span class="overview__card-media" aria-hidden="true">
-                  <img [src]="card.image" [alt]="i18n.t(card.titleKey)" loading="lazy" />
-                  <span class="overview__card-media-overlay"></span>
-                </span>
-              </div>
-            </div>
+            </article>
           }
+        </div>
+
+        <!-- Core Values -->
+        <div class="overview__values" oilReveal>
+          <h3 class="overview__values-heading">{{ i18n.t('overview.values.title') }}</h3>
+          <ul class="overview__values-grid" role="list">
+            @for (val of valueItems(); track val; let vi = $index) {
+              <li class="overview__value-card reveal-child">
+                <span class="overview__value-icon" aria-hidden="true">
+                  @switch (vi) {
+                    @case (0) {
+                      <!-- Integrity – shield check -->
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+                        <path d="m9 12 2 2 4-4" />
+                      </svg>
+                    }
+                    @case (1) {
+                      <!-- Quality – award -->
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526" />
+                        <circle cx="12" cy="8" r="6" />
+                      </svg>
+                    }
+                    @case (2) {
+                      <!-- Safety – hard hat -->
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1z" />
+                        <path d="M10 10V5a2 2 0 0 1 4 0v5" />
+                        <path d="M6 14v-1a6 6 0 0 1 12 0v1" />
+                      </svg>
+                    }
+                    @case (3) {
+                      <!-- Innovation – lightbulb -->
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1.3.5 2.6 1.5 3.5.8.8 1.3 1.5 1.5 2.5" />
+                        <path d="M9 18h6" />
+                        <path d="M10 22h4" />
+                      </svg>
+                    }
+                    @case (4) {
+                      <!-- Professionalism – briefcase -->
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                        <rect width="20" height="14" x="2" y="6" rx="2" />
+                      </svg>
+                    }
+                    @case (5) {
+                      <!-- Teamwork – users -->
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                      </svg>
+                    }
+                    @case (6) {
+                      <!-- Customer Commitment – heart -->
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3.35.81-4.5 2.09C10.85 3.81 9.26 3 7.5 3A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z" />
+                      </svg>
+                    }
+                    @case (7) {
+                      <!-- Sustainability – leaf -->
+                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                       <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z" />
+                       <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+                     </svg>
+                   }
+                  }
+                  
+                </span>
+                <span class="overview__value-label">{{ val }}</span>
+              </li>
+            }
+          </ul>
         </div>
       </div>
     </section>
@@ -123,24 +143,6 @@ const VALUE_ICONS: string[] = [
 })
 export class OverviewComponent {
   protected readonly i18n = inject(I18nService);
-  protected readonly cards = CARDS;
-  protected readonly valueIcons = VALUE_ICONS;
-
-  protected readonly openCards = signal<CardKey[]>([]);
-
+  protected readonly vmCards = VM_CARDS;
   protected readonly valueItems = computed(() => this.i18n.tArr('overview.values.items'));
-
-  protected isCardOpen(key: CardKey): boolean {
-    return this.openCards().includes(key);
-  }
-
-  toggleCard(key: CardKey): void {
-    this.openCards.update((current) => {
-      if (current.includes(key)) {
-        return current.filter((item) => item !== key);
-      }
-
-      return [...current, key];
-    });
-  }
 }

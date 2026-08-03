@@ -11,7 +11,8 @@
   grid-template-columns: 1fr;
   gap: $space-4;
 
-  @media (min-width: #{$bp-sm}) { // was raw 480px — now uses token
+  @media (min-width: #{$bp-sm}) {
+    // was raw 480px — now uses token
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -28,10 +29,9 @@
   background: linear-gradient(160deg, $navy-deep 0%, $navy-mid 100%);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: $radius-xl;
-  padding: $space-6 $space-5;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: $space-3;
   color: var(--text-on-dark);
   @include transition-base(border-color, transform, box-shadow);
   cursor: default;
@@ -49,10 +49,13 @@
       opacity: 1;
     }
   }
+}
 
-  @include mobile-only {
-    padding: $space-5 $space-4;
-  }
+.hse__card-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
 }
 
 .hse__card-glow {
@@ -70,14 +73,25 @@
 
 // Real photo image on the card
 .hse__card-icon {
-  width: 120px;   // was: 176px — right-sized for the card
-  height: 120px;
-  aspect-ratio: 1 / 1;
+  width: 100%; // was: 176px — right-sized for the card
+  height: 100%;
   display: block;
   margin: 0 auto;
   object-fit: cover;
-  border-radius: $radius-md;
+  border-radius: 0;
   @include transition-base(transform);
+}
+
+.hse__card-content {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+  padding: $space-5 $space-5 $space-6;
+  flex: 1;
+
+  @include mobile-only {
+    padding: $space-4 $space-4 $space-5;
+  }
 }
 
 .hse__card-title {

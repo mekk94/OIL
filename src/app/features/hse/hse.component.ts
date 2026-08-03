@@ -38,13 +38,18 @@ const HSE_ICONS: Record<string, string> = {
               class="hse__card reveal-child"
               [dir]="i18n.isArabic() ? 'rtl' : 'ltr'"
             >
-              <img
-                class="hse__card-icon"
-                [src]="'/images/hse/' + enItems()[i].title + '.jpg'"
-                [alt]="item.title"
-              />
-              <h3 class="hse__card-title">{{ item.title }}</h3>
-              <p class="hse__card-body">{{ item.body }}</p>
+              <div class="hse__card-media">
+                <img
+                  class="hse__card-icon"
+                  [src]="'/images/hse/' + enItems()[i].title + '.jpg'"
+                  [alt]="item.title"
+                  loading="lazy"
+                />
+              </div>
+              <div class="hse__card-content">
+                <h3 class="hse__card-title">{{ item.title }}</h3>
+                <p class="hse__card-body">{{ item.body }}</p>
+              </div>
               <div class="hse__card-glow" aria-hidden="true"></div>
             </article>
           }

@@ -26,11 +26,11 @@
   align-items: center;
   justify-content: space-between;
   gap: $space-2;
-  padding-block: $space-1;
+  padding-block: $space-2;
 
   @include desktop-up {
     gap: $space-4;
-    padding-block: $space-1;
+    padding-block: $space-2;
   }
 }
 
@@ -46,19 +46,19 @@
 }
 
 .header__logo {
-  width: 72px;
-  height: 72px;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
 
   @include desktop-up {
-    width: 88px;
-    height: 88px;
+    width: 48px;
+    height: 48px;
   }
 }
 
 .header__brand .header__wordmark {
   font-family: var(--font-heading-en);
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   line-height: 1;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -68,7 +68,7 @@
   color: transparent;
 
   @include desktop-up {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 }
 
