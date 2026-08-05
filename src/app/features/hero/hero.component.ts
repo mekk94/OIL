@@ -13,9 +13,9 @@ import { RevealDirective } from '../../core/directives/reveal.directive';
 
 
 const HERO_SLIDES = [
-  { src: '/images/hero/hero-1.jpeg', alt: 'OIL EPC civil construction project in Saudi Arabia' },
-  { src: '/images/hero/hero-2.jpeg', alt: 'Electrical substation construction by OIL' },
-  { src: '/images/hero/hero-3.png', alt: 'Mechanical pipeline installation by OIL' },
+  { srcDesktop: '/images/hero/hero-1.jpg', srcMobile: '/images/hero/hero-1-mobile.jpg', alt: 'OIL EPC civil construction project in Saudi Arabia' },
+  { srcDesktop: '/images/hero/hero-2.jpg', srcMobile: '/images/hero/hero-2-mobile.jpg', alt: 'Electrical substation construction by OIL' },
+  { srcDesktop: '/images/hero/hero-3.jpg', srcMobile: '/images/hero/hero-3-mobile.jpg', alt: 'Mechanical pipeline installation by OIL' },
 ];
 
 const SLIDE_INTERVAL = 5000;
@@ -33,12 +33,15 @@ const SLIDE_INTERVAL = 5000;
     >
       <!-- Background slideshow -->
       <div class="hero__slides" aria-hidden="true">
-        @for (slide of slides; track slide.src; let i = $index) {
+        @for (slide of slides; track slide.srcDesktop; let i = $index) {
           <div
             class="hero__slide"
             [class.hero__slide--active]="activeIndex() === i"
           >
-            <img [src]="slide.src" [alt]="slide.alt" class="hero__slide-img" loading="eager" />
+            <picture>
+              <source media="(max-width: 767px)" [srcset]="slide.srcMobile" />
+              <img [src]="slide.srcDesktop" [alt]="slide.alt" class="hero__slide-img" loading="eager" />
+            </picture>
           </div>
         }
         <div class="hero__overlay"></div>
@@ -58,7 +61,7 @@ const SLIDE_INTERVAL = 5000;
 
       <!-- Slide indicators -->
       <div class="hero__indicators" aria-hidden="true">
-        @for (slide of slides; track slide.src; let i = $index) {
+        @for (slide of slides; track slide.srcDesktop; let i = $index) {
           <button
             class="hero__indicator"
             [class.hero__indicator--active]="activeIndex() === i"
