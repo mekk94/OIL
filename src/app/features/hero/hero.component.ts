@@ -11,9 +11,9 @@ import { MotionService } from '../../core/services/motion.service';
 import { RevealDirective } from '../../core/directives/reveal.directive';
 
 const HERO_SLIDES = [
-  { src: '/images/hero/hero-1.jpg', alt: 'OIL EPC civil construction project in Saudi Arabia' },
-  { src: '/images/hero/hero-2.jpg', alt: 'Electrical substation construction by OIL' },
-  { src: '/images/hero/hero-3.jpg', alt: 'Mechanical pipeline installation by OIL' },
+  { src: '/images/hero/hero-1.jpeg', alt: 'OIL EPC civil construction project in Saudi Arabia' },
+  { src: '/images/hero/hero-2.jpeg', alt: 'Electrical substation construction by OIL' },
+  { src: '/images/hero/hero-3.png', alt: 'Mechanical pipeline installation by OIL' },
 ];
 
 const SLIDE_INTERVAL = 5000;
