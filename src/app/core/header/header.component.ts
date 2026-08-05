@@ -30,7 +30,7 @@ const NAV_ITEMS = [
   template: `
     <header
       class="header"
-      [class.header--scrolled]="isScrolled()"
+      [class.header--scrolled]="isScrolled() || !isHomeRoute()"
       [class.header--menu-open]="menuOpen()"
       role="banner"
     >
@@ -138,6 +138,8 @@ export class HeaderComponent {
   protected readonly activeSection = signal<string>('');
 
   private readonly router = inject(Router);
+  protected readonly isHomeRoute = signal(true);
+
 
   constructor() {
     this.router.events
@@ -147,6 +149,7 @@ export class HeaderComponent {
       )
       .subscribe((event) => {
         this.activeSection.set(event.urlAfterRedirects.startsWith('/services/') ? 'services' : '');
+        this.isHomeRoute.set(event.urlAfterRedirects === '/' || event.urlAfterRedirects === '');
       });
   }
 

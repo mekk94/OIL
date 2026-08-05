@@ -10,6 +10,8 @@ import { I18nService } from '../../core/services/i18n.service';
 import { MotionService } from '../../core/services/motion.service';
 import { RevealDirective } from '../../core/directives/reveal.directive';
 
+
+
 const HERO_SLIDES = [
   { src: '/images/hero/hero-1.jpeg', alt: 'OIL EPC civil construction project in Saudi Arabia' },
   { src: '/images/hero/hero-2.jpeg', alt: 'Electrical substation construction by OIL' },
@@ -103,3 +105,6 @@ export class HeroComponent implements OnInit, OnDestroy {
     this.activeIndex.set(index);
   }
 }
+
+
+

@@ -10,13 +10,12 @@
   inset-inline-start: 0;
   inset-inline-end: 0;
   z-index: $z-header;
-  @include transition-base(background-color, box-shadow, backdrop-filter);
+  background: linear-gradient(180deg, rgba($navy-deep, 0.55) 0%, rgba($navy-deep, 0) 100%);
+  box-shadow: none;
+  @include transition-base(background-color, box-shadow);
 
-  background: $navy-deep;
-  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.25);
-
-  // Still keep transition for other possible states, but bg is solid
   &--scrolled {
+    background: $navy-deep;
     box-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
   }
 }
@@ -209,10 +208,12 @@
     &:nth-child(1) {
       transform: translateY(7px) rotate(45deg);
     }
+
     &:nth-child(2) {
       opacity: 0;
       width: 0;
     }
+
     &:nth-child(3) {
       transform: translateY(-7px) rotate(-45deg);
     }
@@ -281,7 +282,7 @@
   &--active {
     color: var(--gold-light);
     background: rgba(var(--gold-rgb), 0.1);
-    
+
     &:hover {
       color: var(--gold);
     }
