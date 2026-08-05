@@ -1,4 +1,5 @@
 import {
+  afterNextRender,
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -133,7 +134,7 @@ export class HeaderComponent {
   protected readonly i18n = inject(I18nService);
   protected readonly contactInfo = CONTACT_INFO;
   protected readonly navItems = NAV_ITEMS;
-  protected readonly isScrolled = signal(false);
+  protected readonly isScrolled = signal(true);
   protected readonly menuOpen = signal(false);
   protected readonly activeSection = signal<string>('');
 
@@ -149,32 +150,30 @@ export class HeaderComponent {
       )
       .subscribe((event) => {
         this.activeSection.set(event.urlAfterRedirects.startsWith('/services/') ? 'services' : '');
-        this.isHomeRoute.set(event.urlAfterRedirects === '/' || event.urlAfterRedirects === '');
+        // Wait a frame so the new route's DOM (or lack of #hero) is actually painted
+        requestAnimationFrame(() => this.updateScrollState());
       });
+
+    afterNextRender(() => this.updateScrollState());
   }
 
   @HostListener('window:scroll')
   onScroll(): void {
-    const heroEl = document.getElementById('hero');
+    this.updateScrollState();
 
-    if (!heroEl) {
-      this.isScrolled.set(window.scrollY > 0);
-      return;
-    }
-
-    this.isScrolled.set(window.scrollY >= heroEl.offsetHeight - 1);
-
-    // Scroll spy for active nav link
     const scrollPos = window.scrollY + 150;
     let current = '';
     for (const item of this.navItems) {
       if (!item.anchor) continue;
       const el = document.getElementById(item.anchor);
-      if (el && scrollPos >= el.offsetTop) {
-        current = item.anchor;
-      }
+      if (el && scrollPos >= el.offsetTop) current = item.anchor;
     }
     this.activeSection.set(current);
+  }
+
+  private updateScrollState(): void {
+    const heroEl = document.getElementById('hero');
+    this.isScrolled.set(heroEl ? window.scrollY >= heroEl.offsetHeight - 1 : true);
   }
 
   toggleLang(): void {
