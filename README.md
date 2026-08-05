@@ -36,6 +36,15 @@ Run `npm start` (or `ng serve`) for a dev server. Navigate to `http://localhost:
 
 Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
+### Deploying to GitHub Pages
+This repository is ready for GitHub Pages deployment using GitHub Actions.
+
+1. Push your code to the `main` or `master` branch.
+2. The workflow in `.github/workflows/deploy.yml` will run automatically.
+3. It builds the app using `npm run build:ghpages` and deploys the contents of `dist/oil-website/browser`.
+
+> Make sure GitHub Pages is enabled for the repository and set to the "GitHub Actions" source in repository settings.
+
 ### Deploying to Vercel
 This project includes a `vercel.json` configuration file, making it ready for deployment on Vercel.
 1. Connect your repository to Vercel.
