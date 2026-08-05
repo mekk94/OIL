@@ -14,19 +14,22 @@ interface SubService {
   imports: [RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section class="service-detail section--light" aria-labelledby="service-detail-heading">
-      <div class="container">
-        <div class="service-detail__header" [dir]="i18n.isArabic() ? 'rtl' : 'ltr'">
-          <a routerLink="/" fragment="services" class="btn btn--ghost service-detail__back-btn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path [attr.d]="i18n.isArabic() ? 'm9 18 6-6-6-6' : 'm15 18-6-6 6-6'"/>
-            </svg>
-            {{ i18n.t('services.backBtn') }}
-          </a>
-          <h1 id="service-detail-heading" class="service-detail__heading">
-            {{ i18n.t('services.' + serviceKey() + '.pageTitle') }}
-          </h1>
-        </div>
+        <section class="service-detail section--light" aria-labelledby="service-detail-heading">
+          <div class="container">
+            <div class="service-detail__topbar" [dir]="i18n.isArabic() ? 'rtl' : 'ltr'">
+              <a routerLink="/" fragment="services" class="service-detail__back-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path [attr.d]="i18n.isArabic() ? 'm15 18-6-6 6-6' : 'm9 18 6-6-6-6'"/>
+                </svg>
+                {{ i18n.t('services.backBtn') }}
+              </a>
+            </div>
+
+            <div class="service-detail__header" [dir]="i18n.isArabic() ? 'rtl' : 'ltr'">
+              <h1 id="service-detail-heading" class="service-detail__heading">
+                {{ i18n.t('services.' + serviceKey() + '.pageTitle') }}
+              </h1>
+            </div>
 
         <div class="service-detail__grid">
           @for (sub of subServices(); track sub.name; let i = $index) {

@@ -4,8 +4,15 @@
 
 .service-detail {
   @include section-padding;
-  padding-top: calc(#{$space-20} + #{$header-height}); // cleared magic number
+  padding-top: calc(#{$space-12} + #{$header-height}); // cleared magic number
   min-height: 60vh;
+}
+
+.service-detail__topbar {
+  position: sticky;
+  top: calc(#{$header-height} + #{$space-4});
+  z-index: $z-sticky;
+  margin-bottom: $space-8;
 }
 
 .service-detail__header {
@@ -18,13 +25,28 @@
   display: inline-flex;
   align-items: center;
   gap: $space-2;
-  margin-bottom: $space-6;
+  padding: $space-2 $space-5;
+  border-radius: $radius-full;
+  background: var(--white);
+  color: $navy-deep;
+  font-weight: 600;
   font-size: 0.875rem;
+  box-shadow: $shadow-md;
+  border: 1px solid rgba($navy-deep, 0.08);
+  @include transition-base(background-color, box-shadow, transform);
 
   svg {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
   }
+
+  &:hover {
+    background: var(--gold-light);
+    box-shadow: $shadow-lg;
+    transform: translateY(-1px);
+  }
+
+  @include focus-ring(true);
 }
 
 .service-detail__heading {
@@ -96,7 +118,11 @@
   font-weight: 700;
   text-align: start; // logical
 
-  [data-lang='ar'] & { text-align: end; } // logical
+  [data-lang='ar'] & {
+    text-align: end;
+  }
+
+  // logical
 }
 
 // --- Modal ---
@@ -140,7 +166,10 @@
   box-shadow: $shadow-sm;
   cursor: pointer;
 
-  svg { width: 18px; height: 18px; }
+  svg {
+    width: 18px;
+    height: 18px;
+  }
 
   @include focus-ring;
 }
