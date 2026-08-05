@@ -10,8 +10,6 @@
 
 .service-detail__topbar {
   position: sticky;
-  top: calc(#{$header-height} + #{$space-4});
-  z-index: $z-sticky;
   margin-bottom: $space-8;
 }
 
