@@ -70,10 +70,10 @@ const SLIDE_INTERVAL = 5000;
 
       <!-- Scroll cue -->
       <div class="hero__scroll-cue" aria-hidden="true">
-        <div class="mouse-icon">
-          <div class="mouse-wheel"></div>
-        </div>
-        <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="chevron-icon chevron-icon--1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+        <svg class="chevron-icon chevron-icon--2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M6 9l6 6 6-6"/>
         </svg>
       </div>
