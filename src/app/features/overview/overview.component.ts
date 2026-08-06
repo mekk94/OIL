@@ -12,8 +12,8 @@ interface VmCard {
 }
 
 const VM_CARDS: VmCard[] = [
-  { key: 'vision', titleKey: 'overview.vision.title', bodyKey: 'overview.vision.body', image: '/images/overview/vision.png' },
-  { key: 'mission', titleKey: 'overview.mission.title', bodyKey: 'overview.mission.body', image: '/images/overview/mission.jpeg' },
+  { key: 'vision', titleKey: 'overview.vision.title', bodyKey: 'overview.vision.body', image: 'images/overview/vision.png' },
+  { key: 'mission', titleKey: 'overview.mission.title', bodyKey: 'overview.mission.body', image: 'images/overview/mission.jpeg' },
 ];
 
 

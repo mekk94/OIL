@@ -70,7 +70,7 @@ import { RevealDirective } from '../../core/directives/reveal.directive';
                 >
                   <div class="industries__card-img" aria-hidden="true">
                     <span class="industries__card-num">{{ i + 1 }}</span>
-                    <img [src]="'/images/industries/' + enItems()[i].name + '.png'" [alt]="item.name" loading="lazy" />
+                    <img [src]="'images/industries/' + enItems()[i].name + '.png'" [alt]="item.name" loading="lazy" />
                   </div>
                   <div class="industries__card-content" [dir]="i18n.isArabic() ? 'rtl' : 'ltr'">
                     <h3 class="industries__card-name">{{ item.name }}</h3>

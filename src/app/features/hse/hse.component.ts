@@ -41,7 +41,7 @@ const HSE_ICONS: Record<string, string> = {
               <div class="hse__card-media">
                 <img
                   class="hse__card-icon"
-                  [src]="'/images/hse/' + enItems()[i].title + '.png'"
+                  [src]="'images/hse/' + enItems()[i].title + '.png'"
                   [alt]="item.title"
                   loading="lazy"
                 />
