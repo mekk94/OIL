@@ -24,7 +24,7 @@ const QUICK_LINKS = [
         <!-- Brand -->
         <div class="footer__col footer__col--brand">
           <a [routerLink]="['/']" class="footer__brand-link" aria-label="OIL – Operations Integrated Limited">
-            <img src="/logo.png" alt="OIL logo" class="footer__logo" width="64" height="64" />
+            <img src="logo.png" alt="OIL logo" class="footer__logo" width="64" height="64" />
             <span class="footer__wordmark">OIL</span>
           </a>
           <span class="footer__tagline">{{ i18n.t('footer.tagline') }}</span>

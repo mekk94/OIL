@@ -4,6 +4,21 @@ export type Lang = 'en' | 'ar';
 
 type NestedRecord = { [key: string]: string | string[] | NestedRecord | NestedRecord[] };
 
+export function resolveAssetPath(path: string, baseHref: string | null | undefined): string {
+  if (!path || /^https?:\/\//i.test(path) || path.startsWith('data:')) {
+    return path;
+  }
+
+  const normalizedBase = (baseHref ?? '/').replace(/\/$/, '');
+  const normalizedPath = path.startsWith('/') ? path.slice(1) : path;
+
+  if (!normalizedBase || normalizedBase === '/') {
+    return `/${normalizedPath}`;
+  }
+
+  return `${normalizedBase}/${normalizedPath}`;
+}
+
 @Injectable({ providedIn: 'root' })
 export class I18nService {
   readonly currentLang = signal<Lang>('en');
@@ -33,9 +48,10 @@ export class I18nService {
   }
 
   private async loadTranslations(): Promise<void> {
+    const baseHref = document.baseURI || document.location.href;
     const [en, ar] = await Promise.all([
-      fetch('/i18n/en.json').then((r) => r.json()),
-      fetch('/i18n/ar.json').then((r) => r.json()),
+      fetch(resolveAssetPath('/i18n/en.json', new URL(baseHref, window.location.href).pathname)).then((r) => r.json()),
+      fetch(resolveAssetPath('/i18n/ar.json', new URL(baseHref, window.location.href).pathname)).then((r) => r.json()),
     ]);
     this.translations = { en, ar };
     this.loaded.set(true);

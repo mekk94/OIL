@@ -21,7 +21,7 @@ import { MotionService } from '../services/motion.service';
       aria-label="Loading OIL website"
     >
       <div class="loader__content">
-        <img src="/logo.png" alt="OIL" class="loader__logo" width="72" height="72" />
+        <img src="logo.png" alt="OIL" class="loader__logo" width="72" height="72" />
         <span class="loader__wordmark">OIL</span>
         <div class="loader__bar" aria-hidden="true">
           <div class="loader__bar-fill"></div>
