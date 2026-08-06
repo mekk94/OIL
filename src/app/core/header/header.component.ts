@@ -38,8 +38,7 @@ const NAV_ITEMS = [
       <div class="header__inner container">
         <!-- Logo / Wordmark -->
         <a href="#" class="header__brand" aria-label="OIL – Operations Integrated Limited">
-          <img src="logo.png" alt="OIL logo" class="header__logo" width="48" height="48" />
-          <span class="header__wordmark">OIL</span>
+          <img src="logo-2.png" alt="Operations Integrated Limited" class="header__logo" width="220" height="52" />
         </a>
 
         <!-- Desktop Navigation -->

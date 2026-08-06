@@ -37,7 +37,6 @@
 .header__brand {
   display: flex;
   align-items: center;
-  gap: $space-1;
   text-decoration: none;
   flex-shrink: 0;
 
@@ -45,19 +44,18 @@
 }
 
 .header__logo {
-  width: 40px;
   height: 40px;
-  object-fit: contain;
+  width: auto;
 
   @include desktop-up {
-    width: 48px;
-    height: 48px;
+    height: 52px;
+    width: auto;
   }
 }
 
 .header__brand .header__wordmark {
   font-family: var(--font-heading-en);
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   line-height: 1;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -67,7 +65,7 @@
   color: transparent;
 
   @include desktop-up {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
 }
 
