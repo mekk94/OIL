@@ -10,8 +10,8 @@ import { LoaderComponent } from './core/loader/loader.component';
   standalone: true,
   imports: [RouterOutlet, HeaderComponent, FooterComponent, LoaderComponent],
   template: `
+    <app-loader />
     @if (i18n.isLoaded()) {
-      <app-loader />
       <app-header />
       <main id="main-content">
         <router-outlet />

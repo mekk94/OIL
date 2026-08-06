@@ -61,6 +61,13 @@ export class I18nService {
     const next: Lang = this.currentLang() === 'en' ? 'ar' : 'en';
     this.currentLang.set(next);
     localStorage.setItem('oil-lang', next);
+    // notify the app that a language switch happened so UX (loader/animations)
+    // can run a smooth transition. Listener may show a brief loader.
+    try {
+      document.dispatchEvent(new CustomEvent('oil:lang-switch', { detail: { lang: next } }));
+    } catch (_) {
+      // noop in environments that block CustomEvent
+    }
   }
 
   /**
