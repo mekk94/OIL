@@ -23,14 +23,14 @@
   "overview": {
     "sectionLabel": "Who We Are",
     "heading": "Built on Integrity - Driven by Innovation",
-    "intro": "Operations Integrated Limited (OIL) is a Saudi-based EPC contractor delivering integrated Civil, Electrical and Mechanical engineering solutions. We plan, build and commission complex infrastructure and industrial facilities across the Kingdom, holding every project to the same standard of safety, quality and accountability.",
+    "intro": "Operations Integrated Limited (OIL) is a Saudi-based engineering and construction contractor delivering integrated Civil, Electrical and Mechanical engineering solutions. We plan, build and commission complex infrastructure and industrial facilities across the Kingdom, holding every project to the same standard of safety, quality and accountability.",
     "vision": {
       "title": "Our Vision",
-      "body": "To be Saudi Arabia's most trusted EPC contractor — known for technical excellence, safety leadership and lasting value for the clients and communities we serve."
+      "body": "To be Saudi Arabia's most trusted engineering and construction contractor — known for technical excellence, safety leadership and lasting value for the clients and communities we serve."
     },
     "mission": {
       "title": "Our Mission",
-      "body": "We deliver engineering, procurement and construction on time, within budget and to the highest standards of quality and safety — investing in our people and supporting the goals of Saudi Vision 2030 along the way."
+      "body": "We deliver engineering and construction services on time, within budget and to the highest standards of quality and safety — investing in our people and supporting the goals of Saudi Vision 2030 along the way."
     },
     "values": {
       "title": "Core Values",
@@ -54,8 +54,8 @@
   },
   "services": {
     "sectionLabel": "What We Do",
-    "heading": "Integrated EPC Services",
-    "subhead": "One point of accountability across engineering, procurement and construction.",
+    "heading": "Integrated Engineering & Construction Services",
+    "subhead": "One point of accountability across engineering and construction.",
     "viewMore": "View More",
     "backBtn": "Back to Services",
     "civil": {
@@ -155,7 +155,7 @@
   "industries": {
     "sectionLabel": "Our Reach",
     "heading": "Industries We Serve",
-    "subhead": "EPC expertise applied across the Kingdom's most demanding sectors.",
+    "subhead": "Engineering & Construction expertise applied across the Kingdom's most demanding sectors.",
     "items": [
       {
         "name": "Oil & Gas",
@@ -241,7 +241,7 @@
   "why": {
     "sectionLabel": "Why OIL",
     "heading": "Why Clients Choose OIL",
-    "subhead": "The advantages that make OIL the right EPC partner for your next project.",
+    "subhead": "The advantages that make OIL the right engineering & construction partner for your next project.",
     "center": "WHY",
     "centerTitle": "CHOOSE OIL",
     "items": [
@@ -272,8 +272,8 @@
       },
       {
         "icon": "settings",
-        "title": "Full EPC Capability",
-        "description": "Engineering, procurement and construction under one roof, with one point of accountability."
+        "title": "Full Engineering & Construction Capability",
+        "description": "Engineering and construction under one roof, with one point of accountability."
       },
       {
         "icon": "globe",
@@ -300,11 +300,11 @@
       "phonePlaceholder": "+966 XXX XXX XXX",
       "service": "Service Required",
       "servicePlaceholder": "Select a service",
-      "serviceOptions": [
+        "serviceOptions": [
         "Civil Works",
         "Electrical Works",
         "Mechanical Works",
-        "EPC (Full Scope)",
+        "Engineering & Construction (Full Scope)",
         "Consultation"
       ],
       "message": "Message",
