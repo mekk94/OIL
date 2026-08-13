@@ -81,6 +81,7 @@ type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
                     autocomplete="name"
                     maxlength="100"
                     required
+                    [attr.dir]="i18n.isArabic() ? 'rtl' : 'ltr'"
                     [attr.aria-describedby]="errors()?.name ? 'name-error' : null"
                     [attr.aria-invalid]="!!errors()?.name"
                   />
@@ -106,6 +107,7 @@ type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
                     autocomplete="email"
                     maxlength="200"
                     required
+                    [attr.dir]="i18n.isArabic() ? 'rtl' : 'ltr'"
                     [attr.aria-describedby]="errors()?.email ? 'email-error' : null"
                     [attr.aria-invalid]="!!errors()?.email"
                   />
@@ -129,6 +131,7 @@ type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
                     [placeholder]="i18n.t('contact.form.phonePlaceholder')"
                     autocomplete="tel"
                     maxlength="30"
+                    [attr.dir]="i18n.isArabic() ? 'rtl' : 'ltr'"
                     [attr.aria-describedby]="errors()?.phone ? 'phone-error' : null"
                     [attr.aria-invalid]="!!errors()?.phone"
                   />
@@ -150,6 +153,7 @@ type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
                     [class.contact__input--error]="errors()?.service"
                     [(ngModel)]="formData.service"
                     required
+                    [attr.dir]="i18n.isArabic() ? 'rtl' : 'ltr'"
                     [attr.aria-describedby]="errors()?.service ? 'service-error' : null"
                     [attr.aria-invalid]="!!errors()?.service"
                   >
@@ -179,6 +183,7 @@ type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
                     rows="5"
                     maxlength="2000"
                     required
+                    [attr.dir]="i18n.isArabic() ? 'rtl' : 'ltr'"
                     [attr.aria-describedby]="errors()?.message ? 'message-error' : null"
                     [attr.aria-invalid]="!!errors()?.message"
                   ></textarea>

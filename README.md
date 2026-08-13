@@ -8,9 +8,7 @@ The project is built to be easily maintainable without needing to edit complex c
 
 ### 1. Contact Information (`src/app/config/contact-info.ts`)
 This file is the **single source of truth** for all contact details.
-- Update emails, phone numbers, WhatsApp, and location here.
-- The `formEndpoint` is the Formspree URL where contact form submissions will be sent.
-- **Important**: To activate the Formspree endpoint, an activation email was sent to `gm@oil-epc.com` (or whichever email was used to create the form). The owner of that inbox **must click the activation link** before the form can accept submissions.
+**Important**: To activate the Formspree endpoint, an activation email was sent to `gm@oil.com` (or whichever email was used to create the form). The owner of that inbox **must click the activation link** before the form can accept submissions.
 
 ### 2. Company Statistics (`src/app/config/stats-config.ts`)
 Update the placeholder stats (Years of Operation, Projects Delivered, etc.) here. The animated stats band will automatically read these values.

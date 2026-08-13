@@ -5,8 +5,8 @@
  */
 export const CONTACT_INFO = {
   emails: {
-    general: 'gm@oil-epc.com',
-    business: 'bdm@oil-epc.com',
+    general: 'gm@oil.com',
+    business: 'bdm@oil.com',
   },
   phones: {
     primary: '+966560967865',

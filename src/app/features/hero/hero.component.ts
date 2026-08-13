@@ -13,7 +13,7 @@ import { RevealDirective } from '../../core/directives/reveal.directive';
 
 
 const HERO_SLIDES = [
-  { srcDesktop: 'images/hero/hero-1.webp', srcMobile: 'images/hero/hero-1-mobile.webp', alt: 'OIL EPC civil construction project in Saudi Arabia' },
+  { srcDesktop: 'images/hero/hero-1.webp', srcMobile: 'images/hero/hero-1-mobile.webp', alt: 'OIL civil construction project in Saudi Arabia' },
   { srcDesktop: 'images/hero/hero-2.webp', srcMobile: 'images/hero/hero-2-mobile.webp', alt: 'Electrical substation construction by OIL' },
   { srcDesktop: 'images/hero/hero-3.webp', srcMobile: 'images/hero/hero-3-mobile.webp', alt: 'Mechanical pipeline installation by OIL' },
 ];
